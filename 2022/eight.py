@@ -20,7 +20,7 @@ class Tree:
                 else:
                     value_x_inf += 1
         else:
-            value_x_inf = 1
+            value_x_inf = 0
 
         if x < max_x - 1:
             value_x_sup = 0
@@ -31,7 +31,7 @@ class Tree:
                 else:
                     value_x_sup += 1
         else:
-            value_x_sup = 1
+            value_x_sup = 0
 
         if y > 0:
             value_y_inf = 0
@@ -42,7 +42,7 @@ class Tree:
                 else:
                     value_y_inf += 1
         else:
-            value_y_inf = 1
+            value_y_inf = 0
 
         if y < max_y - 1:
             value_y_sup = 0
@@ -53,7 +53,7 @@ class Tree:
                 else:
                     value_y_sup += 1
         else:
-            value_y_sup = 1
+            value_y_sup = 0
 
         return value_x_inf * value_x_sup * value_y_inf * value_y_sup
 
