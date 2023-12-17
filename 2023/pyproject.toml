@@ -1,0 +1,14 @@
+[tool.ruff]
+line-length = 120
+select = ["E", "W", "F", "I", "COM812"]
+unfixable = [
+    # This will prevent ruff from removing
+    # variables not (yet) used
+    # It will still keep the warning though :)
+    "F841"
+]
+
+[tool.black]
+target-version = ['py310']
+line-length = 120
+exclude = '/(\.git| \.mypy_cache| \.tox| \.venv| \.pytest_cache| __pycache__)/|.*_pb2\.py'
