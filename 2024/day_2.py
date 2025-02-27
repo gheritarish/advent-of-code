@@ -5,7 +5,7 @@ from utils import read_file
 logger = structlog.get_logger()
 
 
-def get_levels(lines: list[str]) -> list[int]:
+def get_levels(lines: list[str]) -> list[list[int]]:
     str_levels = [line.split(" ") for line in lines]
     levels = []
     for str_level in str_levels:
@@ -39,7 +39,7 @@ def is_valid_tolerance(level: list[int]) -> bool:
     return False
 
 
-def solve_first(levels: list[list[int]]) -> int:
+def solve_first(levels: list[list[int]]) -> tuple[int, list]:
     counter = 0
     indexes = []
     for index, level in enumerate(levels):
@@ -49,7 +49,7 @@ def solve_first(levels: list[list[int]]) -> int:
     return counter, indexes
 
 
-def solve_second(levels: list[list[int]]) -> int:
+def solve_second(levels: list[list[int]]) -> tuple[int, list]:
     counter = 0
     indexes = []
     for index, level in enumerate(levels):
@@ -62,10 +62,10 @@ def solve_second(levels: list[list[int]]) -> int:
 def main():
     lines = read_file("input_2.txt")
     levels = get_levels(lines)
-    first, indexes = solve_first(levels)
+    first, _ = solve_first(levels)
     logger.info("First part", first=first)
 
-    second, indexes = solve_second(levels)
+    second, _ = solve_second(levels)
     logger.info("Second part", second=second)
 
 
