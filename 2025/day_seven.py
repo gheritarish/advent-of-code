@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 import structlog
 
 from utils import read_file
@@ -33,23 +35,13 @@ def get_all_splits_and_beams(line: str, beams: dict[int, int]) -> dict[int, int]
                 beams[index] = 1
                 return beams
 
-    returned_beams = {}
+    returned_beams = defaultdict(int)
     for key, number_beams in beams.items():
         if line[key] == "^":
-            if key - 1 in returned_beams.keys():
-                returned_beams[key - 1] += number_beams
-            else:
-                returned_beams[key - 1] = number_beams
-
-            if key + 1 in returned_beams.keys():
-                returned_beams[key + 1] += number_beams
-            else:
-                returned_beams[key + 1] = number_beams
+            returned_beams[key - 1] += number_beams
+            returned_beams[key + 1] += number_beams
         else:
-            if key in returned_beams.keys():
-                returned_beams[key] += number_beams
-            else:
-                returned_beams[key] = number_beams
+            returned_beams[key] += number_beams
     return returned_beams
 
 
